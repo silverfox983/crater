@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>@lang('pdf_profit_loss_label')</title>
     <style type="text/css">
@@ -12,7 +11,7 @@
             border-collapse: collapse;
         }
 
-        .sub-container {
+        .sub-container{
             padding: 0px 20px;
         }
 
@@ -159,12 +158,7 @@
             color: #5851D8;
         }
     </style>
-
-    @if (App::isLocale('th'))
-    @include('app.pdf.locale.th')
-    @endif
 </head>
-
 <body>
     <div class="sub-container">
         <table class="report-header">
@@ -189,7 +183,7 @@
                     <p class="income-title">@lang("pdf_income_label")</p>
                 </td>
                 <td>
-                    <p class="income-amount">{!! format_money_pdf($income, $currency) !!}</p>
+                    <p class="income-amount">{!! format_money_pdf($income) !!}</p>
                 </td>
             </tr>
         </table>
@@ -197,18 +191,18 @@
         <div class="expenses-table-container">
             <table class="expenses-table">
                 @foreach ($expenseCategories as $expenseCategory)
-                <tr>
-                    <td>
-                        <p class="expense-title">
-                            {{ $expenseCategory->category->name }}
-                        </p>
-                    </td>
-                    <td>
-                        <p class="expense-amount">
-                            {!! format_money_pdf($expenseCategory->total_amount, $currency) !!}
-                        </p>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            <p class="expense-title">
+                                {{ $expenseCategory->category->name }}
+                            </p>
+                        </td>
+                        <td>
+                            <p class="expense-amount">
+                                {!! format_money_pdf($expenseCategory->total_amount) !!}
+                            </p>
+                        </td>
+                    </tr>
                 @endforeach
 
             </table>
@@ -218,7 +212,7 @@
     <table class="expense-total-indicator-table">
         <tr>
             <td class="expense-total-cell">
-                <p class="expense-total">{!! format_money_pdf($totalExpense, $currency) !!}</p>
+                <p class="expense-total">{!! format_money_pdf($totalExpense) !!}</p>
             </td>
         </tr>
     </table>
@@ -228,10 +222,9 @@
                 <p class="report-footer-label">@lang("pdf_net_profit_label")</p>
             </td>
             <td>
-                <p class="report-footer-value">{!! format_money_pdf($income - $totalExpense, $currency) !!}</p>
+                <p class="report-footer-value">{!! format_money_pdf(($income-$totalExpense)) !!}</p>
             </td>
         </tr>
     </table>
 </body>
-
 </html>

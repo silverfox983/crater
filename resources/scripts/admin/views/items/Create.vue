@@ -54,6 +54,8 @@
               label="name"
               :options="itemStore.itemUnits"
               value-prop="id"
+              :can-deselect="false"
+              :can-clear="false"
               :placeholder="$t('items.select_a_unit')"
               searchable
               track-by="name"

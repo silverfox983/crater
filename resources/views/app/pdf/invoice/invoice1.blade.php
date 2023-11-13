@@ -15,6 +15,7 @@
             margin: 0px;
             padding: 0px;
             margin-top: 50px;
+
         }
 
         .text-center {
@@ -35,6 +36,7 @@
             left: 0px;
             width: 100%;
             margin-left: 0%;
+
         }
 
         .header-container {
@@ -50,6 +52,12 @@
             padding-bottom: 20px;
             text-transform: capitalize;
             color: #817AE3;
+
+        }
+
+        .header {
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.7);
         }
 
         .content-wrapper {
@@ -327,10 +335,6 @@
         }
 
     </style>
-
-    @if (App::isLocale('th'))
-        @include('app.pdf.locale.th')
-    @endif
 </head>
 
 <body>

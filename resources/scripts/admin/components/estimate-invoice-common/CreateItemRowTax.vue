@@ -30,13 +30,24 @@
         <template v-if="userStore.hasAbilities(ability)" #action>
           <button
             type="button"
-            class="flex items-center justify-center w-full px-2 py-2 bg-gray-200 border-none outline-none cursor-pointer "
+            class="
+              flex
+              items-center
+              justify-center
+              w-full
+              px-2
+              cursor-pointer
+              py-2
+              bg-gray-200
+              border-none
+              outline-none
+            "
             @click="openTaxModal"
           >
             <BaseIcon name="CheckCircleIcon" class="h-5 text-primary-400" />
 
             <label
-              class="ml-2 text-sm leading-none cursor-pointer text-primary-400"
+              class="ml-2 text-sm leading-none text-primary-400 cursor-pointer"
               >{{ $t('invoices.add_new_tax') }}</label
             >
           </button>
@@ -104,10 +115,6 @@ const props = defineProps({
     type: Number,
     default: 0,
   },
-  discountedTotal: {
-    type: Number,
-    default: 0,
-  },
   currency: {
     type: [Object, String],
     required: true,
@@ -146,19 +153,19 @@ const filteredTypes = computed(() => {
 })
 
 const taxAmount = computed(() => {
-  if (localTax.compound_tax && props.discountedTotal) {
-    return ((props.discountedTotal + props.totalTax) * localTax.percent) / 100
+  if (localTax.compound_tax && props.total) {
+    return ((props.total + props.totalTax) * localTax.percent) / 100
   }
 
-  if (props.discountedTotal && localTax.percent) {
-    return (props.discountedTotal * localTax.percent) / 100
+  if (props.total && localTax.percent) {
+    return (props.total * localTax.percent) / 100
   }
 
   return 0
 })
 
 watch(
-  () => props.discountedTotal,
+  () => props.total,
   () => {
     updateRowTax()
   }

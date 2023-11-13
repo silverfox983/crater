@@ -3,18 +3,18 @@
 namespace Crater\Http\Controllers\V1\Admin\Modules;
 
 use Crater\Http\Controllers\Controller;
-use Crater\Http\Requests\UploadModuleRequest;
 use Crater\Space\ModuleInstaller;
+use Illuminate\Http\Request;
 
 class UploadModuleController extends Controller
 {
     /**
      * Handle the incoming request.
      *
-     * @param  \Crater\Http\Requests\UploadModuleRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(UploadModuleRequest $request)
+    public function __invoke(Request $request)
     {
         $this->authorize('manage modules');
 

@@ -443,8 +443,7 @@ class Invoice extends Model implements HasMedia
         $data['invoice'] = $this->toArray();
         $data['customer'] = $this->customer->toArray();
         $data['company'] = Company::find($this->company_id);
-        $data['subject'] = $this->getEmailString($data['subject']);
-        $data['body'] = $this->getEmailString($data['body']);
+        $data['body'] = $this->getEmailBody($data['body']);
         $data['attach']['data'] = ($this->getEmailAttachmentSetting()) ? $this->getPDFData() : null;
 
         return $data;
@@ -636,7 +635,7 @@ class Invoice extends Model implements HasMedia
         return $this->getFormattedString($this->notes);
     }
 
-    public function getEmailString($body)
+    public function getEmailBody($body)
     {
         $values = array_merge($this->getFieldsArray(), $this->getExtraFields());
 
