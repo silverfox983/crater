@@ -30,11 +30,11 @@ RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Create system user to run Composer and Artisan Commands
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
+RUN useradd -G www-data,root -u 1000 -d /home/crater-user crater-user
+RUN mkdir -p /home/crater-user/.composer && \
+    chown -R crater-user:crater-user /home/crater-user
 
 # Set working directory
 WORKDIR /var/www
 
-USER $user
+USER crater-user
